@@ -1,0 +1,52 @@
+import java.util.*;
+public class Programme {
+    private String programId;
+    private String name;
+    private String level;
+    private int duration;
+    private List<Student> enrolledStudents;
+    
+    public Programme(String programId, String name, String level, int duration) {
+        this.programId = programId;
+        this.name = name;
+        this.level = level;
+        this.duration = duration;
+        this.enrolledStudents = new ArrayList<>();
+    }
+    
+    public String getProgramId() {
+        return programId;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getLevel() {
+        return level;
+    }
+    
+    public int getDuration() {
+        return duration;
+    }
+    
+    public List<Student> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+    
+    public void enrollStudent(Student student) {
+        enrolledStudents.add(student);
+    }
+    
+    public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
+        
+    }
+    
+    public void calcProgramProgression(Student student) {
+        
+    }
+    
+    public void generateTranscript(Student student) {
+        
+    }
+}
