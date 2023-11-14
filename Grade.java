@@ -12,6 +12,8 @@ public class Grade{
     //gradeMarks: an array of the percentage ranges for the grades, decided by the lecturer, listed in ascending order (ie. lowest grade range listed first)
     //gradeTitles: an array of the corresponding letter grades to gradeMarks, also in ascending order (ie. lowest grade listed first)
     //totalWeighting: addition of all weighting 
+
+    //Katie 
     public Grade(double mark, double weighting, int[]gradeMarks, String[] gradeTitles){
         this.mark = mark;
         this.weighting = weighting;
@@ -28,6 +30,7 @@ public class Grade{
     }
     
     //totalMark: final grade for the module
+    //Katie - gets the total grade for the module and returns an error message if the sum of the weighting for each individual grade doesn't add up to 100
     public double getTotalGrade(double[] marks){
         double totalMark = 0;
         String totalGrade;
