@@ -26,7 +26,7 @@ public class Module {
         return this.moduleId;
     }
     
-    public int getDuration(int moduleId){
+    public int getDuration(){
         return this.duration;
     }
     
