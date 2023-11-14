@@ -1,33 +1,39 @@
-
-/**
- * Write a description of class Transcript here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Transcript
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Transcript
-     */
-    public Transcript()
-    {
-        // initialise instance variables
-        x = 0;
+import java.time.*;
+public class Transcript{
+    private double semesterQCA;
+    private double sessionQCA;
+    private String transcriptOutputIntro;
+    private String transcriptOutputBody;
+    private Student student;
+    
+    public Transcript(Student student){
+        this.student = student;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public double calcSemesterQCA(Student s, Semester sem){
+        Module[] modules = sem.getModules();
+        double sumQCS=0;
+        double sumAttHrs=0;
+        double sumNonQHrs=0;
+        double QCA;
+        for (int i=0; i<modules.length; i++){
+            sumQCS = sumQCS + modules[i].getQCS;
+            sumAttHrs = sumAttHrs + modules[i].getAttHrs;
+            sumNonQHrs = sumNonQHrs + modules[i].getNonQHrs;
+        }
+        
+        QCA = sumQCS/(sumAttHrs-sumNonQHrs);
+    }
+    
+    public double calcCumulativeQCA(){
+        
+    }
+    
+    public String outputTranscript(){
+        LocalDate date = LocalDate.now();
+        transcriptOutputIntro = String.format("UNIVERSITY OF LIMERICK\n%t\n%dSTUDENT TRANSCRIPT\n%tNAME: %s %s\nADDRESS: %s\nTELEPHONE: %d\nSTATUS: %s\nPROGRAMME: %s - %s ", 
+            date, student.getStudentNumber(), student.getTitle(), student.getName(), student.getAddress(), student.getPhone(), student.getStatus(), student.getProgramme(), student.getProgrammeCode()); 
+        transcriptOutputBody = String.format("", );
+        return transcriptOutputIntro+transcriptOutputBody;
     }
 }
