@@ -1,12 +1,12 @@
 import java.util.*;
-public class Programme {
+public class Program {
     private String programId;
     private String name;
     private String level;
     private int duration;
     private List<Student> enrolledStudents;
     
-    public Programme(String programId, String name, String level, int duration) {
+    public Program(String programId, String name, String level, int duration) {
         this.programId = programId;
         this.name = name;
         this.level = level;
