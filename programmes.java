@@ -39,14 +39,26 @@ public class Program {
     }
     
     public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
-        
+        if (faculty.teachesModule(module)) {
+            for (StudentResult result : results) {
+                Student student = result.getStudent();
+                module.addResult(result); 
+                student.addResult(result); 
+            }
+        } else {
+            System.out.println("Faculty does not teach this module.");
+        }
     }
     
-    public void calcProgramProgression(Student student) {
-        
+    public void calcProgramProgression(Student student, Transcript currentQCA) {
+        if (currentQCA.calcSemesterQCA >= 2.00) {
+            System.out.println(student.getName() + " is eligible for program progression.");
+        } else {
+            System.out.println(student.getName() + " does not meet the minimum academic standards for progression.");
+        }
     }
     
-    public void generateTranscript(Student student) {
-        
-    }
+    public Map<String, String> viewTranscript() {
+            return transcript.viewTranscript();
+        }
 }
