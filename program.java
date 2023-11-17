@@ -2,7 +2,6 @@ import java.util.*;
 public class Program {
     private String programId;
     private String name;
-    private String level;
     private int duration;
     private List<Student> enrolledStudents;
     
@@ -20,10 +19,6 @@ public class Program {
     
     public String getName() {
         return name;
-    }
-    
-    public String getLevel() {
-        return level;
     }
     
     public int getDuration() {
