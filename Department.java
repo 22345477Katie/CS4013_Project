@@ -1,8 +1,8 @@
 public class Department {
-    String departmentName ;
-    String studentsResults ;
-    int departmentId ;
-    boolean progression ; 
+    private String departmentName ;
+    private String studentsResults ;
+    private int departmentId ;
+    private boolean progression ; 
     
     
     //creating a department with a name and an id
