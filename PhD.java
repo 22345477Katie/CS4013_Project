@@ -1,4 +1,4 @@
-public class Phd extends PostgraduateProgram {
+public class Phd extends Postgrad {
     private String thesis;
     public Phd(String programId, String name, int duration) {
         super(programId, name, duration);
