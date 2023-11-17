@@ -44,7 +44,7 @@ public class Module {
     }
 
     //Katie
-    public int getQPV(){
+    public double getQPV(){
         return QPV;
     }
     
