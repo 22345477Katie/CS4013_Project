@@ -33,7 +33,7 @@ public class Program {
         enrolledStudents.add(student);
     }
     
-    public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
+  /*  public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
         if (faculty.teachesModule(module)) {
             for (StudentResult result : results) {
                 Student student = result.getStudent();
@@ -51,7 +51,7 @@ public class Program {
         } else {
             System.out.println(student.getName() + " does not meet the minimum academic standards for progression.");
         }
-    }
+    }*/
     
     public Map<String, String> viewTranscript() {
             return transcript.viewTranscript();
