@@ -56,4 +56,13 @@ public class Program {
     public Map<String, String> viewTranscript() {
             return transcript.viewTranscript();
         }
+    
+    public Student findStudentById(String studentId) {
+        for (Student student : enrolledStudents) {
+            if (student.getStudentId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null; // Return null if no matching student is found
+    }
 }
