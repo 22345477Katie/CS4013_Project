@@ -1,6 +1,8 @@
+import java.util.*;
 public class Semester{
     private double factor;
     private int semester;
+    private ArrayList<Module> modules = new ArrayList<Module>();
     
     public Semester(double factor, int semester){
         this.factor = factor;
@@ -13,5 +15,9 @@ public class Semester{
     
     public double getFactor(){
         return factor;
+    }
+
+    public void addModules(Module m){
+        modules.add(m);
     }
 }
