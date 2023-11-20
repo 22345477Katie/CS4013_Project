@@ -9,6 +9,8 @@ public class Module {
     private String[] gradeTitles;
     private double nonQHrs;
     private double QPV;
+    private ArrayList<Grade> grades;
+    private HashMap<Student, ArrayList<Grade>> resultsOfAssignments;
 
     //Sophie
     public Module(String moduleName,int moduleId, int credits, int duration, int[] gradeMarks, String[] gradeTitles, double nonQHrs, double QPV){
@@ -47,6 +49,29 @@ public class Module {
     public double getQPV(){
         return QPV;
     }
+
+    private static ArrayList<Program> gradesForAssignment(String fileName){
+        ArrayList<Grade> grades = new ArrayList<Grade>();
+        Path pathToFile = Paths.get(fileName);
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
+            String firstLine = br.readLine();
+            while (firstLine != null){
+                String[] gradeScores = firstLine.split(",");
+                grades.add(gradeScores);
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return grades;
+
+    }
+
+    public HashMap<Student, ArrayList<Grade>> assignmentGrades (Student s){
+         private HashMap<Student, ArrayList<Grade>> resultsOfAssignments = new HashMap<Student, ArrayList<Grade>>();
+        resultsOfAssignments.add(s, grades);
+        return resultsOfAssignments;
+    }
     
-    //method for 
 }
