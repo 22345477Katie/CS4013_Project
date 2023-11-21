@@ -32,7 +32,8 @@ public class Department {
     }
     
     //return whether a student is progressing to the next year or not
-    public boolean reviewProgression(double qca){
+    public boolean reviewProgression(){
+        //get qca
         if(qca >= 2.0){
             progression = true;
         } else {
