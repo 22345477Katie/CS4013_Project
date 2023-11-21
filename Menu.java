@@ -4,18 +4,50 @@ import java.io.IOException;
 public class Menu {
     private Scanner in;
     private Program program; 
-    public Menu(Program program) {
+    public Menu(Program program) { //?
         in = new Scanner(System.in);
-        this.program = program;
+        this.program = program; //?
     }
 
     public void run() throws IOException {
         boolean more = true;
         
         while (more) {
-            System.out.println("(A) Add student  (B) Browse students  (G) Get QCA  E)xit");
+            System.out.println("Please choose user type: (F)aculty    (S)tudent    (D)epartment    (Q)uit)");
             String command = in.nextLine().toUpperCase();
-
+            if (command.equals("F")){
+                System.out.println("(V)iew Student Transcript    (S)ubmit module results    (Q)uit");
+                if (command.equals("V")){
+                    System.out.println("Please provide relevant student ID number");
+                    String studentID = in.nextLine();
+                    if 
+                    //look up transcripts, submit module results, 
+                }else if (command.equals("S")){
+                }else if (command.equals("Q")){
+                    more = false;
+                }else{
+                    System.out.println("Invalid command");
+                }
+            }
+            else if(command.equals("S)){
+                System.out.println("(V)iew Transcript    (Q)uit");
+                if (command.equals("V")){
+                    
+                }else if (command.equals("V")){
+                }else{
+                    System.out.println("Invalid command");
+                //review own transcript, 
+            }
+            else if (command.equals("D")){
+                System.out.println((H)old review board    (Q)uit);
+                
+            }
+            else if (command.equals("Q")){
+                more = false;
+            }
+            else {
+                System.out.println("Invalid command");
+            }
             if (command.equals("A")) {
                 addStudent();
             } else if (command.equals("B")) {
