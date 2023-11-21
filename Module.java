@@ -68,7 +68,7 @@ public class Module {
 
     }
 
-    public HashMap<Student, ArrayList<Grade>> addAssignmentGrades (Student s){
+    public HashMap<Student, ArrayList<Grade>> addModuleGrade (Student s){
          private HashMap<Student, ArrayList<Grade>> resultsOfAssignments = new HashMap<Student, ArrayList<Grade>>();
         resultsOfAssignments.add(s, grades);
         return resultsOfAssignments;
