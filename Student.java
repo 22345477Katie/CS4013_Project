@@ -1,73 +1,186 @@
-import com.opencsv.CSVReader;
-
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Scanner;
 
 public class Student {
-    // Attributes
-    private String name;
+    // Basic student attributes
+    private final String name;
+    private final String studentId;
+    private final String dateOfBirth;
     private String address;
-    private String currentModules;
-    private int dateOfBirth;
-    private int yearOfStudy;
-    private String programmeOfStudy;
-    private String studentId;
-    private String program;
+    private final String programmeOfStudy;
     private String department;
     private int currentSemester;
-    private Transcript transcript;
+    private final Transcript transcript;
+    private int yearOfStudy;
+    private Program program;
+    public final List<Module> chosenModules;
+    public final List<Module> currentModules;
 
-    // Constructor
-    public Student(String studentId, String name, String address, String currentModules,
-                   int dateOfBirth, int yearOfStudy, String programmeOfStudy,
-                   String program, String department, int currentSemester) {
-        // Initialise instance variables with values from the constructor
-        this.studentId = studentId;
+    // Constructor to initialize a Student object
+    public Student(String name, String studentId, String dateOfBirth,
+                   String address, int yearOfStudy, Program program, int currentSemester,
+                   String programmeOfStudy, String department) {
         this.name = name;
-        this.address = address;
-        this.currentModules = currentModules;
+        this.studentId = studentId;
         this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.program = new Program();
+        this.transcript = new Transcript();
+        this.currentModules = new ArrayList<>();
         this.yearOfStudy = yearOfStudy;
-        this.programmeOfStudy = programmeOfStudy;
         this.program = program;
+        this.programmeOfStudy = programmeOfStudy;
         this.department = department;
         this.currentSemester = currentSemester;
-        this.transcript = new Transcript();  // Initialize the transcript object
+        this.chosenModules = new ArrayList<>();
+    }
+
+    // Getters for basic student information
+    String getStudent(){
+        return Student;}
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public String getDOB() {
+        return dateOfBirth;
+    }
+
+    public Transcript getTranscript() {
+        return transcript;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public List<String> getCurrentModules() {
+        return chosenModules;
     }
 
     public int getYearOfStudy() {
         return yearOfStudy;
     }
 
+    public Program getProgram() {
+        return program;
+    }
+
+    // Setter method for updating the student's address
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // Setter method for updating the student's year of study
     public void setYearOfStudy(int yearOfStudy) {
         this.yearOfStudy = yearOfStudy;
     }
 
-    public String getProgrammeOfStudy() {
-        return programmeOfStudy;
+    // Method to view the student's transcript
+    public void viewTranscript() {
+        transcript.outputTranscript();
     }
 
-    public void setProgrammeOfStudy(String programmeOfStudy) {
-        this.programmeOfStudy = programmeOfStudy;
-    }
-    public String getStudentId() {
-        return studentId;
-    }
+    // Method to view student choices
+   /* public void viewStudentChoices() {
+        System.out.println("Student Choices for " + getName() + " (Student ID: " + getStudentId() + "):");
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
+        // Display enrolled classes or program details
+        if (enrolledClasses.isEmpty()) {
+            System.out.println("No enrolled classes.");
+        } else {
+            System.out.println("Enrolled Classes:");
+            for (String enrolledClass : enrolledClasses) {
+                System.out.println("- " + enrolledClass);
+            }
+        }
+        // Display program details or additional choices
+        // might need to modify based on specific data structure.
+        Program program = getProgram();
+        if (program != null) {
+            System.out.println("Program: " + program.getProgramId() );
+            System.out.println("Program Modules:");
+            for (Module: program.getModules()) System.out.println("- " + module.getModuleId());
+        } else {
 
-    public String getProgram() {
-        return program;
-    }
+            System.out.println("No program information available.");
+        }
+    }*/
+    public int getStudentChoices(List<Module> availableModules) {
+        Scanner scanner = new Scanner(System.in);
 
-    public void setProgram(String program) {
-        this.program = program;
-    }
+        System.out.println("Available Modules:");
+
+        int count = 1;
+        for (Module module : availableModules) {
+            System.out.println(count + ". " + module.getName());
+            count++;
+        }
+
+        System.out.println("Choose modules (enter module IDs, separated by commas):");
+        String moduleChoicesInput = scanner.nextLine();
+
+        String[] moduleIds = moduleChoicesInput.split(",");
+        for (String moduleId : moduleIds) {
+            int choice = Integer.parseInt(moduleId.trim()) - 1; // Adjust for 0-based indexing
+            if (choice >= 0 && choice < availableModules.size()) {
+                Module chosenModule = availableModules.get(choice);
+                chosenModules.add(chosenModule);
+                System.out.println("Chosen Module: " + chosenModule.getName());
+            } else {
+                System.out.println("Invalid module choice: " + moduleId);
+            }
+        }
+
+        /*/ Method for handling repeat requests
+        public void repeatRequests() {
+            // Implementation for repeat requests
+        }*/
+
+
+
+        // Method for submitting results by a faculty member
+        public void submitResults(Faculty faculty, List < ModuleResult > results){
+            faculty.gradeSubmission(this, results);
+        }
+
+        // Method to calculate QCA
+        public double calculateQCA() {
+            return transcript.calculateQCA();
+        }
+        public void addModuleGrade(Module module, String grade) {
+            transcript.addModuleGrade(module, grade);
+        }
+
+        /*/ Method to check if the student meets the minimum academic standards for progression
+        public boolean checkProgression () {
+            // Implementation for checking progression
+            return true;  // Placeholder value
+        }*/
+
+        // Method to read students from a CSV file
+        public List<Student> readStudentsFromCSV(String fileName, Program program){
+            List<Student> students = new ArrayList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(",");
+                    Student student = new Student(data[0], Integer.parseInt(data[1]), data[2], data[3], Integer.parseInt(data[4]), program);
+                    students.add(student);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+            return students;
+        }
 
     public String getDepartment() {
         return department;
@@ -85,88 +198,5 @@ public class Student {
         this.currentSemester = currentSemester;
     }
 
-    // toString method for string representation of the object
-    @Override
-    public String toString() {
-        return "Name: " + name +
-                "\nAddress: " + address +
-                "\nCurrent Modules: " + currentModules +
-                "\nDate of Birth: " + dateOfBirth +
-                "\nYear of Study: " + yearOfStudy +
-                "\nProgramme of Study: " + programmeOfStudy +
-                "\nStudent ID: " + studentId +    // Include additional attributes in the toString method
-                "\nProgram: " + program +
-                "\nDepartment: " + department +
-                "\nCurrent Semester: " + currentSemester;
 
-        // Additional methods
-        public void addModuleGrade(Module module, String grade) {
-            transcript.addModuleGrade(module, grade);
-        }
-
-        public double calculateQCA() {
-            return transcript.calculateQCA();
-        }
-
-        public Map<String, String> viewTranscript() {
-            return transcript.viewTranscript();
-        }
-
-        // Method to read module grades from a CSV file
-        public void readModuleGradesFromCSV(String csvFilePath) {
-            try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-                String[] headers = reader.readNext(); // Skip header line
-
-                // Read each line of the CSV file and add module grades
-                String[] gradeData;
-                while ((gradeData = reader.readNext()) != null) {
-                    String moduleId = gradeData[0];
-                    String grade = gradeData[1];
-
-                    Module module = new Module(moduleId, "Module Name", 3, 1); // *Replace with actual module details*
-
-                    // Add module grade to the transcript
-                    addModuleGrade(module, grade);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Static method to create a list of students from a CSV file
-        public static List<Student> createStudentsFromCSV(String csvFilePath) {
-            // Create an empty list to store Student objects
-            List<Student> students = new ArrayList<>();
-
-            // Using try-with to handle file reading
-            try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-                String[] headers = reader.readNext(); // Skip header line
-
-                // Read each line of the CSV file and create Student objects
-                String[] studentData;
-                while ((studentData = reader.readNext()) != null) {
-                    // Extract data from the CSV line
-                    String studentId = studentData[0];
-                    String name = studentData[1];
-                    String address = studentData[2];
-                    String currentModules = studentData[3];
-                    int dateOfBirth = Integer.parseInt(studentData[4]);
-                    int yearOfStudy = Integer.parseInt(studentData[5]);
-                    String programmeOfStudy = studentData[6];
-                    String program = studentData[7];
-                    String department = studentData[8];
-                    int currentSemester = Integer.parseInt(studentData[9]);
-
-                    // Create a new Student object and add it to the list
-                    students.add(new Student(studentId, name, address, currentModules,
-                            dateOfBirth, yearOfStudy, programmeOfStudy,
-                            program, department, currentSemester));
-                }
-            } catch (IOException | NumberFormatException e) {
-                // Handle potential exceptions
-                e.printStackTrace();
-            }
-
-            // Return the list of created Student objects
-            return students;
-        }
+}
