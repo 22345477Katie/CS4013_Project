@@ -1,12 +1,9 @@
 import java.util.Scanner;
 import java.io.IOException;
 
+private Scanner in;
 public class Menu {
-    private Scanner in;
-    private Program program; 
-    public Menu(Program program) { //?
         in = new Scanner(System.in);
-        this.program = program; //?
     }
 
     public void run() throws IOException {
@@ -23,6 +20,7 @@ public class Menu {
                     if 
                     //look up transcripts, submit module results, 
                 }else if (command.equals("S")){
+                    
                 }else if (command.equals("Q")){
                     more = false;
                 }else{
@@ -30,6 +28,9 @@ public class Menu {
                 }
             }
             else if(command.equals("S)){
+                System.out.println("Please enter your student number"){
+                    String indivStudentID = in.nextLine();
+                    if 
                 System.out.println("(V)iew Transcript    (Q)uit");
                 if (command.equals("V")){
                     
