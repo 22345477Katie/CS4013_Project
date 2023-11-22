@@ -1,5 +1,9 @@
 public class RecordsSystem{
   public static void main(){
-    
+      throws IOException
+   { 
+      Menu menu = Menu();
+      menu.run();
+   }
   }
 }
