@@ -50,28 +50,26 @@ public class Module {
         return QPV;
     }
 
-    private static ArrayList<Program> gradesForAssignment(String fileName){
-        ArrayList<Grade> grades = new ArrayList<Grade>();
+   
+    public HashMap<String, String> setGradingScale(String fileName){
+        HashMap<String, String> gradingScale = new HashMap<String, String>();
         Path pathToFile = Paths.get(fileName);
-
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String firstLine = br.readLine();
-            while (firstLine != null){
-                String[] gradeScores = firstLine.split(",");
-                grades.add(gradeScores);
+        
+        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
+            String line = br.readLine();
+            while(line != null){
+                String[] gradesAndScales = line.split(",");
+                String grade = gradesAndScales[0];
+                String scaling = gradesAndScales[1]; 
+                gradingScale.put(grade, scaling);
                 line = br.readLine();
             }
-        } catch (IOException ioe) {
+        } catch (IOException ioe){
             ioe.printStackTrace();
         }
-        return grades;
-
+        return gradingScale;
     }
 
-    public HashMap<Student, ArrayList<Grade>> addModuleGrade (Student s){
-         private HashMap<Student, ArrayList<Grade>> resultsOfAssignments = new HashMap<Student, ArrayList<Grade>>();
-        resultsOfAssignments.add(s, grades);
-        return resultsOfAssignments;
-    }
+    
     
 }
