@@ -14,16 +14,25 @@ public class Module {
     private ArrayList<Integer> scale = new ArrayList<Integer>();
 
     //Sophie
-    public Module(String moduleName,int moduleId, int credits, int duration, int[] gradeMarks, String[] gradeTitles, double nonQHrs, double QPV){
-        this.moduleId = moduleId;
-        this.credits = credits;
-        this.duration = duration;
-        this.moduleName = moduleName;
-        this.gradeMarks = gradeMarks;
-        this.gradeTitles = gradeTitles;
-        this.nonQHrs = nonQHrs;
-        this.QPV = QPV;
+    //assumption that csv file will be formatted as:
+    //moduleName, moduleId, moduleCreditsWorth, moduleDurationInYears, nonQHrsOfModule, QPVForModule
+    public Module(String fileName){
+        Path pathToFile = Paths.get(fileName);
         
+        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
+            String line = br.readLine();
+            while(line != null){
+                String[] moduleInfo = line.split(",");
+                this.moduleName = moduleInfo[0];
+                this.moduleId = Integer.parseInt(moduleInfo[1]);
+                this.credits = Integer.parseInt(moduleInfo[2]);
+                this.duration = Integer.parseInt(moduleInfo[3]);
+                this.nonQHrs = Double.parseDouble(moduleInfo[4]);
+                this.QPV = Double.parseDouble(moduleInfo[5]);
+            }
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+        }
     }
 
     //Sophie
