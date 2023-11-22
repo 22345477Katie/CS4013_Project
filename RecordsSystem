@@ -1,10 +1,9 @@
 import java.io.IOException;
 public class RecordsSystem{
-  public static void main(){
-      throws IOException
-   { 
-      Menu menu = Menu();
+    public static void main(String args[])
+    throws IOException
+    {
+      Menu menu = new Menu();
       menu.run();
-   }
-  }
+    }
 }
