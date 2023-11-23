@@ -22,6 +22,7 @@ public class Department {
             while(line != null){
                 String[] departmentName = line.split(",");
                 this.departmentName = departmentName[0];
+                line = br.readLine();
         }
         
         
