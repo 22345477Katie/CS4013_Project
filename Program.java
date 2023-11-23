@@ -4,11 +4,13 @@ public class Program {
     private String name;
     private int duration;
     private List<Student> enrolledStudents;
+    private boolean commonEntry;
     
-    public Program(String programId, String name, String level, int duration) {
+    public Program(String programId, String name, String level, boolean commonEntry, int duration) {
         this.programId = programId;
         this.name = name;
         this.level = level;
+        this.commonEntry = commonEntry;
         this.duration = duration;
         this.enrolledStudents = new ArrayList<>();
     }
@@ -19,6 +21,10 @@ public class Program {
     
     public String getName() {
         return name;
+    }
+
+    public boolean getCommonEntry(){
+        return commonEntry;
     }
     
     public int getDuration() {
@@ -32,6 +38,8 @@ public class Program {
     public void enrollStudent(Student student) {
         enrolledStudents.add(student);
     }
+
+
     
   /*  public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
         if (faculty.teachesModule(module)) {
