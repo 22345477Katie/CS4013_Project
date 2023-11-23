@@ -1,124 +1,101 @@
-//import com.opencsv.bean.CsvReader;
-
-
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 public class Faculty {
-    // Attributes
-    private String facultyId;
-    private String name;
-    private String department;
+    // Basic faculty attributes
+    private String title;
+    private double salary;
+    private String office;
+    private final List<Student> students;
+    private final List<String> facultyChoices;
+    private List<String[]> gradeScaleArray;
+    private List<String[]> resultsArray;  // Array to store results
 
-    // Constructor
-    public Faculty(String facultyId, String name, String department) {
-        this.facultyId = facultyId;
-        this.name = name;
-        this.department = department;
+    // Constructor to initialise a Faculty object
+    public Faculty(String title, double salary, String office) {
+        this.title = title;
+        this.salary = salary;
+        this.office = office;
+        this.students = new ArrayList<>();
+        this.facultyChoices = new ArrayList<>();
+        this.resultsArray = new ArrayList<>();
+        this.gradeScaleArray = new ArrayList<>();
     }
 
-    // Getters and setters for necessary attributes
-    public String getFacultyId() {
-        return facultyId;
+
+    // Getters and setters for basic faculty information
+    public String getTitle() {
+        return title;
     }
 
-    public void setFacultyId(String facultyId) {
-        this.facultyId = facultyId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public double getSalary() {
+        return salary;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getOffice() {
+        return office;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setOffice(String office) {
+        this.office = office;
     }
-/*
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public List<String> getFacultyChoices() {
+        return facultyChoices;
+    }
+
+    // Constructor to initialize Faculty with a GradeScale
     // Logic for submitting module results for a student from a CSV file
-    public void gradeSubmission(Student student, String moduleResultsCsvFilePath) {
-        // Example logic: Read module results from CSV file and update student's transcript
-        List<String[]> moduleResultsData = readModuleResultsFromCSV(moduleResultsCsvFilePath);
-
-        // Assume the CSV file structure: studentId, moduleId, grade
-        String studentId = student.getStudentId();
-
-        for (String[] data : moduleResultsData) {
-            if (data[0].equals(studentId)) {
-                // Found the student in the module results CSV
+    public void readResultsFromCSV(String resultsCsvFilePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(resultsCsvFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Split the CSV line into an array
+                String[] data = line.split(",");
+                String studentId = data[0];
                 String moduleId = data[1];
                 String grade = data[2];
 
-                // Create a new Module object with the given moduleId
-                Module module = new Module(moduleId, "Module Name", 3, 1); // Adjust with actual module details
-
-                // Update the student's transcript
-                student.addModuleGrade(module, grade);
-                System.out.println("Module result added for Student " + student.getName() +
-                        " for Module " + module.getName() + ": " + grade);
-                return; // Exit the loop once the student is found
-            }
-        }
-
-        // If the loop completes without finding the student, print a message
-        System.out.println("Student " + student.getName() + " not found in the module results CSV.");
-    }
-
-    // Method to view a student's transcript
-    public Map<String, List<String>> viewStudentTranscript(Student student) {
-        return student.viewTranscript();
-    }
-    /*
-    // Static method to create a list of faculty members from a CSV file
-    public static List<Faculty> createFacultyFromCSV(String csvFilePath) {
-        // Create an empty list to store Faculty objects
-        List<Faculty> facultyMembers = new ArrayList<>();
-
-        // Use try-with-resources to handle file reading
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-            String[] headers = reader.readNext(); // Skip header line
-
-            // Read each line of the CSV file and create Faculty objects
-            String[] facultyData;
-            while ((facultyData = reader.readNext()) != null) {
-                // Extract data from the CSV line
-                String facultyId = facultyData[0];
-                String name = facultyData[1];
-                String department = facultyData[2];
-
-                // Create a new Faculty object and add it to the list
-                facultyMembers.add(new Faculty(facultyId, name, department));
+                // Store the result in the array
+                String[] result = {studentId, moduleId, grade};
+                resultsArray.add(result);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Return the list of created Faculty objects
-        return facultyMembers;
     }
 
-    // Static method to read module results from a CSV file
-    private List<String[]> readModuleResultsFromCSV(String csvFilePath) {
-        List<String[]> moduleResultsData = new ArrayList<>();
+    // Logic for passing grade scale through the command line interface
+    public void readGradeScaleFromCommandLine(String[] args) {
+        if (args.length < 2) {
+            System.out.println("Usage: java Faculty <resultsCsvFilePath> <gradeScaleCsvFilePath>");
+            System.exit(1);
+        }
 
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-            moduleResultsData = reader.readAll();
+        String gradeScaleCsvFilePath = args[1];
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(gradeScaleCsvFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Split the CSV line into an array
+                String[] grade = line.split(",");
+                gradeScaleArray.add(grade);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return moduleResultsData;
-    }*/
-
-    // added code...
-}
+    }
