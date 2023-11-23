@@ -24,7 +24,7 @@ public class Undergrad extends Program {
 
     public void programProgression(Student student) {
         int currentYear = student.getYearOfStudy();
-        if (currentYear < 4) {
+        if (currentYear < getDuration) {
             System.out.println("Undergraduate progression to the next year.");
             student.setYearOfStudy(currentYear + 1);
         } else {
