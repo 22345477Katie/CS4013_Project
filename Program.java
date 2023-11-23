@@ -65,4 +65,22 @@ public class Program {
         }
         return null;
     }
+
+     private static ArrayList<Module> modulesInProgram(String fileName){
+        ArrayList<Module> programs = new ArrayList<Module>();
+        Path pathToFile = Paths.get(fileName);
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
+            String firstLine = br.readLine();
+            while (firstLine != null){
+                String[] namesOfModules = firstLine.split(",");
+                programs.add(namesOfModules);
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return modules;
+
+    }
 }
