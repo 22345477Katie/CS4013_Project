@@ -6,7 +6,7 @@ public class Phd extends Postgrad {
 
     public void programProgression(Student student) {
         int currentYear = student.getYearOfStudy();
-        if (currentYear < 4) {
+        if (currentYear < getDuration()) {
             System.out.println("PhD progression to the next year.");
             student.setYearOfStudy(currentYear + 1);
         } else {
