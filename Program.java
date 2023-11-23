@@ -5,6 +5,7 @@ public class Program {
     private int duration;
     private List<Student> enrolledStudents;
     private boolean commonEntry;
+    private Transcript transcript;
     
     public Program(String programId, String name, boolean commonEntry, int duration) {
         this.programId = programId;
@@ -37,10 +38,41 @@ public class Program {
     public void enrollStudent(Student student) {
         enrolledStudents.add(student);
     }
-
-
     
-  /*  public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
+    public Map<String, String> viewTranscript() {
+            return transcript.viewTranscript();
+        }
+    
+    public Student findStudentById(String studentId) {
+        for (Student student : enrolledStudents) {
+            if (student.getStudentId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+     private static ArrayList<Module> modulesInProgram(String fileName){
+        ArrayList<Module> programs = new ArrayList<>();
+        Path pathToFile = Paths.get(fileName);
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
+            String Line = br.readLine();
+            while (Line != null){
+                String[] namesOfModules = firstLine.split(",");
+                programs.add(namesOfModules);
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return programs;
+
+    }
+}
+
+
+/*  public void submitResults(Faculty faculty, Module module, List<StudentResult> results) {
         if (faculty.teachesModule(module)) {
             for (StudentResult result : results) {
                 Student student = result.getStudent();
@@ -59,35 +91,3 @@ public class Program {
             System.out.println(student.getName() + " does not meet the minimum academic standards for progression.");
         }
     }*/
-    
-    public Map<String, String> viewTranscript() {
-            return transcript.viewTranscript();
-        }
-    
-    public Student findStudentById(String studentId) {
-        for (Student student : enrolledStudents) {
-            if (student.getStudentId().equals(studentId)) {
-                return student;
-            }
-        }
-        return null;
-    }
-
-     private static ArrayList<Module> modulesInProgram(String fileName){
-        ArrayList<Module> programs = new ArrayList<Module>();
-        Path pathToFile = Paths.get(fileName);
-
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String firstLine = br.readLine();
-            while (firstLine != null){
-                String[] namesOfModules = firstLine.split(",");
-                programs.add(namesOfModules);
-                line = br.readLine();
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-        return modules;
-
-    }
-}
