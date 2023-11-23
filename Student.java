@@ -18,6 +18,7 @@ public class Student {
     public final List<Module> chosenModules;
     public final List<Module> currentModules;
 
+
     // Constructor to initialize a Student object
     public Student(String name, String studentId, String dateOfBirth,
                    String address, int yearOfStudy, Program program, int currentSemester,
@@ -113,7 +114,7 @@ public class Student {
             System.out.println("No program information available.");
         }
     }*/
-    public int getStudentChoices(List<Module> availableModules) {
+    public List<Student> getStudentChoices(List<Module> availableModules) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Available Modules:");
@@ -143,19 +144,16 @@ public class Student {
         public void repeatRequests() {
             // Implementation for repeat requests
         }*/
-
-
-
         // Method for submitting results by a faculty member
         public void submitResults(Faculty faculty, List < ModuleResult > results){
             faculty.gradeSubmission(this, results);
         }
 
         // Method to calculate QCA
-        public double calculateQCA() {
+        public double calculateQCA () {
             return transcript.calculateQCA();
         }
-        public void addModuleGrade(Module module, String grade) {
+        public void addModuleGrade (Module module, String grade){
             transcript.addModuleGrade(module, grade);
         }
 
@@ -166,8 +164,9 @@ public class Student {
         }*/
 
         // Method to read students from a CSV file
-        public List<Student> readStudentsFromCSV(String fileName, Program program){
-            List<Student> students = new ArrayList<>();
+        public List<Student> readStudentsFromCSV (String fileName, Program program)List<Student> students;
+        {
+            students = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -179,8 +178,8 @@ public class Student {
                 e.printStackTrace();
             }
         }
-            return students;
-        }
+        return students;
+    }
 
     public String getDepartment() {
         return department;
