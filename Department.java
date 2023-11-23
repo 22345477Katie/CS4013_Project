@@ -47,8 +47,7 @@ public class Department {
         return progression;
     }
     
-    //return whether a student is graduating or not
-    //list of programs in department
+     //list of programs in department
 
     private static ArrayList<Program> programsInDepartment(String fileName){
         ArrayList<Program> programs = new ArrayList<Program>();
