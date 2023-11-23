@@ -12,7 +12,7 @@ public class Student {
     private final String programmeOfStudy;
     private String department;
     private int currentSemester;
-    private final Transcript transcript;
+    private Transcript transcript;
     private int yearOfStudy;
     private Program program;
     public final List<Module> chosenModules;
