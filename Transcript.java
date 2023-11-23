@@ -77,7 +77,7 @@ public class Transcript{
         double[] details = new double[3];
         double QCA;
         //need to make sure the student is not still in first year
-        if(s.getProgram().getType()==true){ //&& s.getYear>1){ //common entry or not
+        if(s.getProgram().getCommonEntry()==true){ //&& s.getYear>1){ //common entry or not
             for(int j = 0; j<2; j++){
                 details = getQCADetails(sems[j]);
                 sumQCS = sumQCS + details[0];
