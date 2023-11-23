@@ -14,8 +14,17 @@ public class Department {
     private ArrayList<Program> programs ;
     
     //creating a department with a name and an id
-    public Department (String departmentName){
-        this.departmentName = departmentName;
+    public Department (String fileName){
+        Path pathToFile = Paths.get(fileName);
+
+        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
+            String line = br.readLine();
+            while(line != null){
+                String[] departmentName = line.split(",");
+                this.departmentName = departmentName[0];
+        }
+        
+        
         
     }
 
