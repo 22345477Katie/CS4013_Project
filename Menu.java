@@ -21,7 +21,9 @@ public class Menu {
                     if 
                     //look up transcripts, submit module results, 
                 }else if (command.equals("S")){
-                    
+                    System.out.println("Please enter the module code")
+                        String moduleCode = in.nextLine();
+                        if (Program.modules.contains()
                 }else if (command.equals("Q")){
                     more = false;
                 }else{
