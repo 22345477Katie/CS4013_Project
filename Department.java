@@ -13,7 +13,7 @@ public class Department {
     private boolean progression ; 
     private ArrayList<Program> programs ;
     
-    //creating a department with a name and an id
+    //creating a department with a name 
     public Department (String fileName){
         Path pathToFile = Paths.get(fileName);
 
@@ -23,10 +23,9 @@ public class Department {
                 String[] departmentName = line.split(",");
                 this.departmentName = departmentName[0];
                 line = br.readLine();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
-        
-        
-        
     }
 
     //return id of department
