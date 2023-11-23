@@ -40,6 +40,12 @@ public class Department {
         //check if String studentId is on HashMap
         //if it is, get the value associated with that student key (the student object)
         //then use that to get the qca :)
+        if(students.containsKey(studentId) == true){
+            double qca = (students.get(studentId).getQCA());
+        } else {
+            System.out.println("Error: student not found. Please input a valid student ID");
+        }
+        
         if(qca >= 2.0){
             progression = true;
         } else {
