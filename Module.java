@@ -38,6 +38,7 @@ public class Module {
                 this.duration = Integer.parseInt(moduleInfo[3]);
                 this.nonQHrs = Double.parseDouble(moduleInfo[4]);
                 this.QPV = Double.parseDouble(moduleInfo[5]);
+                line = br.readLine();
             }
         } catch (IOException ioe){
             ioe.printStackTrace();
