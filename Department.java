@@ -32,8 +32,12 @@ public class Department {
     }
     
     //return whether a student is progressing to the next year or not
-    public boolean reviewProgression(){
-        //get qca
+    public boolean reviewProgression(String studentId){
+        //get qca via if studentId 
+        //records system class will have a hash map <StudentID, StudentObject>
+        //check if String studentId is on HashMap
+        //if it is, get the value associated with that student key (the student object)
+        //then use that to get the qca :)
         if(qca >= 2.0){
             progression = true;
         } else {
