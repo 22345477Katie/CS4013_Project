@@ -79,7 +79,7 @@ public class Faculty {
         }
     }
 
-    // Logic for passing grade scale through the command line interface
+    /*/ Logic for passing grade scale through the command line interface
     public void readGradeScaleFromCommandLine(String[] args) {
         if (args.length < 2) {
             System.out.println("Usage: java Faculty <resultsCsvFilePath> <gradeScaleCsvFilePath>");
@@ -97,5 +97,5 @@ public class Faculty {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }/*
     }
