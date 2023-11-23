@@ -15,8 +15,7 @@ public class Student {
     private Transcript transcript;
     private int yearOfStudy;
     private Program program;
-    public final List<Module> chosenModules;
-    public final List<Module> currentModules;
+    private Semester[] semesters;
 
 
     // Constructor to initialize a Student object
@@ -29,13 +28,11 @@ public class Student {
         this.address = address;
         this.program = new Program();
         this.transcript = new Transcript();
-        this.currentModules = new ArrayList<>();
         this.yearOfStudy = yearOfStudy;
         this.program = program;
         this.programmeOfStudy = programmeOfStudy;
         this.department = department;
         this.currentSemester = currentSemester;
-        this.chosenModules = new ArrayList<>();
     }
 
     // Getters for basic student information
