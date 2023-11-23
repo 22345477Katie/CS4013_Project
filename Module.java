@@ -56,6 +56,11 @@ public class Module {
     }
 
     //Katie
+    public int getNonQHrs(){
+        return nonQHrs;
+    }
+
+    //Katie
     public double getQPV(){
         return QPV;
     }
