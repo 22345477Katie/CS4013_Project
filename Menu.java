@@ -77,7 +77,7 @@ public class Menu {
     private void browseStudents() {
        System.out.println("Enter Student ID to search:");
        String studentId = in.nextLine();
-       Student foundStudent = /*menu*/program.findStudentById(studentId);
+       Student foundStudent = program.findStudentById(studentId);
        if (foundStudent != null) {
           System.out.println("Student Name: " + foundStudent.getName());
        } else {
@@ -85,10 +85,10 @@ public class Menu {
        }
     }
 
-    private void getQCA() {
+ /*   private void getQCA() {
         System.out.println("Enter Student ID:");
         String studentId = in.nextLine();
-        Student student = /*menu*/program.findStudentById(studentId);
+        Student student = program.findStudentById(studentId);
         if (student != null) {
            Semester currentSemester = getSemester(student);
            if (currentSemester != null) {
@@ -101,7 +101,7 @@ public class Menu {
         } else {
            System.out.println("Student not found.");
         }
-    }
+    }*/
 
     /*private Student findStudentById(String studentId) {
        for (Student student : program.getEnrolledStudents()) {
