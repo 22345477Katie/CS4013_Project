@@ -10,14 +10,13 @@ import java.util.List;
 public class Department {
     private String departmentName ;
     private String studentsResults ;
-    private int departmentId ;
     private boolean progression ; 
     private ArrayList<Program> programs ;
     
     //creating a department with a name and an id
-    public Department (String departmentName, int departmentId){
+    public Department (String departmentName){
         this.departmentName = departmentName;
-        this.departmentId = departmentId;
+        
     }
 
     //return id of department
