@@ -6,10 +6,9 @@ public class Program {
     private List<Student> enrolledStudents;
     private boolean commonEntry;
     
-    public Program(String programId, String name, String level, boolean commonEntry, int duration) {
+    public Program(String programId, String name, boolean commonEntry, int duration) {
         this.programId = programId;
         this.name = name;
-        this.level = level;
         this.commonEntry = commonEntry;
         this.duration = duration;
         this.enrolledStudents = new ArrayList<>();
