@@ -52,7 +52,7 @@ public class Program {
         return null;
     }
 
-     private static ArrayList<Module> modulesInProgram(String fileName){
+     public static ArrayList<Module> modulesInProgram(String fileName){
         ArrayList<Module> programs = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
 
@@ -69,6 +69,8 @@ public class Program {
         return programs;
 
     }
+
+    public Module
 }
 
 
