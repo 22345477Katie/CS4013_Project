@@ -9,10 +9,13 @@ public class Transcript{
     private Semester[] sems = new Semester[10]; //an array of the semesters the student has completed;
     
     //Katie
-    //Passes in student object
-    public Transcript(Student student){
-        s = student;
-        sems = s.getSemesters();
+    //Creates transcript object
+    public Transcript(){
+    }
+
+    public void initialise(Student s){
+        this.s = s;
+        this.sems = s.getSemesters();
     }
     
     //Katie
