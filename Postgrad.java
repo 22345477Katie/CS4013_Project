@@ -14,7 +14,7 @@ public class Postgrad extends Program {
 
     public void programProgression(Student student) {
         int currentYear = student.getYearOfStudy();
-        if (currentYear < 2) {
+        if (currentYear < getDuration()) {
             student.setYearOfStudy(currentYear + 1);
         } else {
             System.out.println("Student has completed the postgraduate program.");
