@@ -12,7 +12,8 @@ public class Menu {
         while (more) {
             System.out.println("Please choose user type: (F)aculty    (S)tudent    (D)epartment    (Q)uit)");
             String command = in.nextLine().toUpperCase();
-            if (command.equals("F")){
+          //Faculty
+                if (command.equals("F")){
                 System.out.println("(V)iew Student Transcript    (S)ubmit module results    (Q)uit");
                 if (command.equals("V")){
                     System.out.println("Please provide relevant student ID number");
