@@ -194,5 +194,29 @@ public class Student {
         this.currentSemester = currentSemester;
     }
 
+    public void setSemesters(String fileName)
+        {
+            semesters = new Semester[10];
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(",");
+                    Semester semester = new Semester(Double.parseDouble(data[0]), Integer.parseInt(data[1]));
+                    semesters.add(semester);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Semester[] getSemesters(){
+        return semesters;
+    }
+
+    public Semester getSemester(int i){
+        return semesters[i+1];    
+    }
+        
 
 }
