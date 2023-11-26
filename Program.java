@@ -6,6 +6,7 @@ public class Program {
     private List<Student> enrolledStudents;
     private boolean commonEntry;
     private Transcript transcript;
+    private ArrayList<Module> programs;
     
     public Program(String programId, String name, boolean commonEntry, int duration) {
         this.programId = programId;
@@ -53,7 +54,7 @@ public class Program {
     }
 
      public static ArrayList<Module> modulesInProgram(String fileName){
-        ArrayList<Module> programs = new ArrayList<>();
+        this.programs = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
 
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
@@ -70,7 +71,9 @@ public class Program {
 
     }
 
-    public Module
+    public ArrayList<Module> getModules(){
+        return programs;
+    }
 }
 
 
