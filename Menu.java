@@ -14,16 +14,30 @@ public class Menu {
             String command = in.nextLine().toUpperCase();
           //Faculty
                 if (command.equals("F")){
-                System.out.println("(V)iew Student Transcript    (S)ubmit module results    (Q)uit");
+                System.out.println("(V)iew Student Transcript    (P)rovide module results    (Q)uit");
                 if (command.equals("V")){
                     System.out.println("Please provide relevant student ID number");
                     String studentID = in.nextLine();
-                    if 
-                    //look up transcripts, submit module results, 
-                }else if (command.equals("S")){
+                    if (RecordSystem.getStudents().hasKey(studentID)){
+                            Student s = RecordSystem.getStudents().get(studentID);
+                            s.getTranscript().initialise(s);
+                            s.getTranscript().outputTranscript();
+                    }else{
+                        System.out.println("Invalid student number provided");
+                    }
+                }else if (command.equals("P")){
                     System.out.println("Please enter the module code")
                         String moduleCode = in.nextLine();
-                        if (Program.modules.contains()
+                        if (Program.getModules.contains(moduleCode)==true){
+                                int i = 0;
+                                while(i<Program.getModules.size() && moduleCode!= Program.getModules().get(i).getModuleId()){
+                                }
+                        }
+                        Module module = Program.getModules().get(i);
+                        System.out.println("Please enter the name of the csv file containing the student grades");
+                        String gradesFilepath = in.nextLine();
+                        module.setStudentGrades(gradeFilepath);
+                        
                 }else if (command.equals("Q")){
                     more = false;
                 }else{
@@ -33,11 +47,17 @@ public class Menu {
             else if(command.equals("S)){
                 System.out.println("Please enter your student number"){
                     String indivStudentID = in.nextLine();
-                    if 
-                System.out.println("(V)iew Transcript    (Q)uit");
-                if (command.equals("V")){
-                    
-                }else if (command.equals("V")){
+                     if (RecordSystem.getStudents().hasKey(studentID)){
+                            Student s = RecordSystem.getStudents().get(studentID);
+                     }else{
+                        System.out.println("Invalid student ID number provided");
+                     }
+                System.out.println("(T)ranscript    (Q)uit");
+                if (command.equals("T")){
+                    s.getTranscript().initialise(s);
+                        s.getTranscript().outputTranscript();
+                }else if (command.equals("Q")){
+                        more = false;
                 }else{
                     System.out.println("Invalid command");
                 //review own transcript, 
