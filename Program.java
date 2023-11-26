@@ -61,6 +61,7 @@ public class Program {
             String Line = br.readLine();
             while (Line != null){
                 String[] namesOfModules = firstLine.split(",");
+                //need to add module details
                 programs.add(namesOfModules);
                 line = br.readLine();
             }
