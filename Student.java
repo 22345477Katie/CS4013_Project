@@ -9,8 +9,8 @@ public class Student {
     private final String studentId;
     private final String dateOfBirth;
     private String address;
-    private final String programmeOfStudy;
-    private String department;
+    //private final String programmeOfStudy;
+    //private String department;
     private int currentSemester;
     private Transcript transcript;
     private int yearOfStudy;
@@ -21,7 +21,8 @@ public class Student {
     // Constructor to initialize a Student object
     public Student(String name, String studentId, String dateOfBirth,
                    String address, int yearOfStudy, Program program, int currentSemester,
-                   String programmeOfStudy, String department) {
+                   //String programmeOfStudy, String department
+                  ) {
         this.name = name;
         this.studentId = studentId;
         this.dateOfBirth = dateOfBirth;
