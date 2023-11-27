@@ -1,87 +1,71 @@
 import java.util.Scanner;
 import java.io.IOException;
 
-private Scanner in;
 public class Menu {
+    private Scanner in;
+    private RecordSystem recordSystem; // Assuming RecordSystem is a class you have
+    private Program program; // Assuming Program is a class you have
+
+    public Menu() {
         in = new Scanner(System.in);
+        recordSystem = new RecordSystem(); // Initialize RecordSystem
+        program = new Program(); // Initialize Program
     }
 
     public void run() throws IOException {
         boolean more = true;
-        
+
         while (more) {
-            System.out.println("Please choose user type: (F)aculty    (S)tudent    (D)epartment    (Q)uit)");
+            System.out.println("Please choose user type: (F)aculty (S)tudent (D)epartment (Q)uit)");
             String command = in.nextLine().toUpperCase();
-          //Faculty
-                if (command.equals("F")){
-                System.out.println("(V)iew Student Transcript    (P)rovide module results    (Q)uit");
-                if (command.equals("V")){
-                    System.out.println("Please provide relevant student ID number");
-                    String studentID = in.nextLine();
-                    if (RecordSystem.getStudents().hasKey(studentID)){
-                            Student s = RecordSystem.getStudents().get(studentID);
-                            s.getTranscript().initialise(s);
-                            s.getTranscript().outputTranscript();
-                    }else{
-                        System.out.println("Invalid student number provided");
-                    }
-                }else if (command.equals("P")){
-                    System.out.println("Please enter the module code")
-                        String moduleCode = in.nextLine();
-                        if (Program.getModules.contains(moduleCode)==true){
-                                int i = 0;
-                                while(i<Program.getModules.size() && moduleCode!= Program.getModules().get(i).getModuleId()){
-                                }
-                        }
-                        Module module = Program.getModules().get(i);
-                        System.out.println("Please enter the name of the csv file containing the student grades");
-                        String gradesFilepath = in.nextLine();
-                        module.setStudentGrades(gradeFilepath);
-                        
-                }else if (command.equals("Q")){
+
+            if (command.equals("F")) {
+                // Faculty
+                System.out.println("(V)iew Student Transcript (P)rovide module results (Q)uit");
+                command = in.nextLine().toUpperCase();
+                if (command.equals("V")) {
+                    // View Student Transcript
+                } else if (command.equals("P")) {
+                    // Provide Module Results
+                } else if (command.equals("Q")) {
                     more = false;
-                }else{
+                } else {
                     System.out.println("Invalid command");
                 }
-            }
-            else if(command.equals("S)){
-                System.out.println("Please enter your student number"){
-                    String indivStudentID = in.nextLine();
-                     if (RecordSystem.getStudents().hasKey(studentID)){
-                            Student s = RecordSystem.getStudents().get(studentID);
-                     }else{
-                        System.out.println("Invalid student ID number provided");
-                     }
-                System.out.println("(T)ranscript    (Q)uit");
-                if (command.equals("T")){
-                    s.getTranscript().initialise(s);
+            } else if (command.equals("S")) {
+                // Student
+                System.out.println("Please enter your student number");
+                String indivStudentID = in.nextLine();
+                if (recordSystem.getStudents().hasKey(indivStudentID)) {
+                    Student s = recordSystem.getStudents().get(indivStudentID);
+                    System.out.println("(T)ranscript (Q)uit");
+                    command = in.nextLine().toUpperCase();
+                    if (command.equals("T")) {
+                        s.getTranscript().initialise(s);
                         s.getTranscript().outputTranscript();
-                }else if (command.equals("Q")){
+                    } else if (command.equals("Q")) {
                         more = false;
-                }else{
+                    } else {
+                        System.out.println("Invalid command");
+                    }
+                } else {
+                    System.out.println("Invalid student ID number provided");
+                }
+            } else if (command.equals("D")) {
+                // Department
+                System.out.println("(H)old review board (Q)uit");
+                command = in.nextLine().toUpperCase();
+                if (command.equals("H")) {
+                    // Hold Review Board
+                } else if (command.equals("Q")) {
+                    more = false;
+                } else {
                     System.out.println("Invalid command");
-                //review own transcript, 
-            }
-            else if (command.equals("D")){
-                System.out.println((H)old review board    (Q)uit);
-                
-            }
-            else if (command.equals("Q")){
-                more = false;
-            }
-            else {
-                System.out.println("Invalid command");
-            }
-            if (command.equals("A")) {
-                addStudent();
-            } else if (command.equals("B")) {
-                browseStudents();
-            } else if (command.equals("C")) {
-                getQCA();
-            } else if (command.equals("E")) {
+                }
+            } else if (command.equals("Q")) {
                 more = false;
             } else {
-                System.out.println("Invalid command.");
+                System.out.println("Invalid command");
             }
         }
     }
@@ -98,16 +82,40 @@ public class Menu {
     }
 
     private void browseStudents() {
-       System.out.println("Enter Student ID to search:");
+         System.out.println("Enter Student ID to search:");
        String studentId = in.nextLine();
        Student foundStudent = program.findStudentById(studentId);
        if (foundStudent != null) {
           System.out.println("Student Name: " + foundStudent.getName());
        } else {
           System.out.println("No student found with ID: " + studentId);
-       }
+        }
     }
 
+    public static void main(String[] args) throws IOException {
+        Menu menu = new Menu();
+        menu.run();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
  /*   private void getQCA() {
         System.out.println("Enter Student ID:");
         String studentId = in.nextLine();
