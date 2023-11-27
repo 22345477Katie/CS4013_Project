@@ -4,8 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Department {
     private String departmentName ;
@@ -23,15 +22,13 @@ public class Department {
                 String[] departmentName = line.split(",");
                 this.departmentName = departmentName[0];
                 line = br.readLine();
-        } catch (IOException ioe) {
+            } 
+        }catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }
 
-    //return id of department
-    public int getDepartmentId(){
-        return this.departmentId;
-    }
+    
     
     //return whether a student is progressing to the next year or not
     public boolean reviewProgression(String studentId){
@@ -40,8 +37,12 @@ public class Department {
         //check if String studentId is on HashMap
         //if it is, get the value associated with that student key (the student object)
         //then use that to get the qca :)
+        double qca;
+        
+        HashMap<String, Student> students = RecordsSystem.getStudents();
+        
         if(students.containsKey(studentId) == true){
-            double qca = (students.get(studentId).getQCA());
+            qca = (students.get(studentId).getQCA());
         } else {
             System.out.println("Error: student not found. Please input a valid student ID");
         }
@@ -62,9 +63,9 @@ public class Department {
         Path pathToFile = Paths.get(fileName);
 
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String firstLine = br.readLine();
-            while (firstLine != null){
-                String[] namesOfPrograms = firstLine.split(",");
+            String line = br.readLine();
+            while (line != null){
+                String[] namesOfPrograms = line.split(",");
                 programs.add(namesOfPrograms);
                 line = br.readLine();
             }
