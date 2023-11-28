@@ -21,7 +21,7 @@ public class Module {
     private HashMap<String, String> gradingScale;
     private ArrayList<String> grades = new ArrayList<String>();
     private ArrayList<Integer> scale = new ArrayList<Integer>();
-    private HashMap<Student, String> studentsGrades;
+    private HashMap<String, Integer> studentsGrades;
 
     //Sophie
     //assumption that csv file will be formatted as:
@@ -34,7 +34,6 @@ public class Module {
         this.nonQHrs = nonQHrs;
         this.QPV = QPV;
         this.gradingScale = gradingScale;
-        this.studentsGrades = studentsGrades;
     }
     
     //Sophie
@@ -67,12 +66,28 @@ public class Module {
         return QPV;
     }
     
-    public HashMap<Student, String> getStudentGrades(){
-        return studentsGrades;
-    }
-    
     public HashMap<Integer, String> getGradingScale(){
         return gradingScale;
+    }
+
+    public void setStudentMarks(HashMap<String, Integer> marks){
+        studentMarks = marks;
+    }
+
+    public HashMap<String, Integer> getStudentMarks(){
+        return studentMarks;
+    }
+
+    public String getStudentGrade(String studentID){
+        int mark = studentMarks.get(studentID);
+        String grade;
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+             String threshold = entry.getKey();
+             if (mark>=threshold){
+                grade = entry.getValue();
+                 return grade;
+             }    
+        }
     }
 }
 
