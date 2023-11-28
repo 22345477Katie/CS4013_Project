@@ -20,4 +20,13 @@ public class Semester{
     public void addModules(Module m){
         modules.add(m);
     }
+
+    public int getYear(){
+        if(semester%2==1){
+            year = semester/2+1;
+        }else{
+            year = semester/2;
+        }
+        return year;
+    }
 }
