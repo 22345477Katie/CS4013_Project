@@ -39,16 +39,16 @@ public class CSVReader {
         }*/
 
     public HashMap<String, Student> setStudents(String fileName){
-    //csv file should be in the format: student number,name/student id/date of birth/address/year of study (int)/program id/current semester (int)
+    //csv file should be in the format: student number (String), name (String)/date of birth (String)/address (String)/year of study (int)/program id (String)/current semester (int)
         students = new HashMap<String, Student>();
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
                 String[] studentsArray = firstLine.split(",");
-                String studentID = studentsArray[1];
-                String studentParameters = studentsArray[2].split("/");
-                Student student = new Student (studentParameters[0], studentParameters[1], studentParameters[2],  studentParameters[3], Integer.parseInt(studentParameters[4]), studentParameters[5], Integer.parseInt(studentParameters[6]));
+                String studentID = studentsArray[0];
+                String studentParameters = studentsArray[1].split("/");
+                Student student = new Student (studentParameters[0], studentsArray[0], studentParameters[1],  studentParameters[2], Integer.parseInt(studentParameters[3]), studentParameters[4], Integer.parseInt(studentParameters[5]));
                 students.put(studentsArray[1], student);
                }
             
@@ -69,7 +69,7 @@ public class CSVReader {
     }
 
     public HashMap<String, Module> setModules(String fileName){
-    //csv file should be in the format: moduleID, module name/
+    //csv file should be in the format: moduleID, module name (String)/module credits (int)/module duration (in years) (int)/
         modules = new HashMap<String, Module>();
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
