@@ -22,6 +22,6 @@ public class Postgrad extends Program {
     }
 
     public String programID() {
-        return getProgramId();
+        return super.getProgramId();
     }
 }
