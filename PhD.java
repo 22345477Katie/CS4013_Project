@@ -15,7 +15,7 @@ public class Phd extends Postgrad {
     }
 
     public String programID() {
-        return getProgramId();
+        return super.getProgramId();
     }
 
     public void setThesis(String thesis) {
