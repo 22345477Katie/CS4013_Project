@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CSVReader {
     private HashMap<String, Student> students;
     private HashMap<String, Module> modules;
+    private HashMap<Integer, String> gradeScale;
     public static void main(String[] args) {
 
         try (Scanner scanner = new Scanner(new File(fileName))) {
@@ -69,15 +70,22 @@ public class CSVReader {
     }
 
     public HashMap<String, Module> setModules(String fileName){
-    //csv file should be in the format: moduleID, module name (String)/module credits (int)/module duration (in years) (int)/
+    //csv file should be in the format: moduleID (String), module name (String)/module credits (int)/module duration (in years) (int)/non Q Hours (int)/QPV (int),
+        (ctd.)(a list of descending marks and grades listed in pairs, mark first, with each corresponding mark and grade separated by a / and each mark-grade pair separated by a *) (eg. 90/A1*80/A2*75/A3...)
         modules = new HashMap<String, Module>();
+        gradeScale = new HashMap<Integer, String>();
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] values = line.split(",");
                 String moduleID = values[0];
                 String[] moduleParameters = values[1].split("/");
-                Module module = new Module(
+                String[] markGradePairs = values[2].split("*");
+                for (int i = 0; i<markGradePairs.length; i++){
+                    String[] marksAndGrades = markGradePairs[i].split("/");
+                    gradeScale.put(Integers.parseInt(marksAndGrades[0]), marksAndGrades[1]);
+                }
+                Module module = new Module(moduleParameters[0], values[0], Integer.parseInt(moduleParameters[1]), Integer.parseInt(moduleParameters[2]), Integer.parseInt(moduleParameters[3]), Integer.parseInt(moduleParameters[4]), gradeScale)
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
