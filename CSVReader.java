@@ -129,7 +129,7 @@ public class CSVReader {
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
-        return departmentsList;
+        return departments;
     }
 
     public HashMap<String, Faculty> setFaculty(String fileName){
