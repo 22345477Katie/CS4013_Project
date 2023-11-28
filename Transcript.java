@@ -100,8 +100,8 @@ public class Transcript{
     
     public String outputTranscript(){
         LocalDate date = LocalDate.now();
-        transcriptOutputIntro = String.format("UNIVERSITY OF LIMERICK\n%t\n%dSTUDENT TRANSCRIPT\n%tNAME: %s %s\nADDRESS: %s\nTELEPHONE: %d\nSTATUS: %s\nPROGRAMME: %s - %s ", 
-            date, s.getStudentNumber(), s.getTitle(), s.getName(), s.getAddress(), s.getPhone(), s.getStatus(), s.getProgramme(), s.getProgrammeCode()); 
+        transcriptOutputIntro = String.format("UNIVERSITY OF LIMERICK\n%t\n%dSTUDENT TRANSCRIPT\n%tNAME: %s\nADDRESS: %s\nPROGRAMME: %s - %s ", 
+            date, s.getStudentId(), s.getName(), s.getAddress()); 
         transcriptOutputBody = String.format("%-11s%-50s\n%-11s%-50s", "Program", s.getProgram(), "Program ID", s.getProgram().getProgramId());
         for (int i = 0; i<s.getSemesters().length(); i++){
             Semester sem = s.getSemester(i);
