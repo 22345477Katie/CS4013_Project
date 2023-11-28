@@ -29,4 +29,12 @@ public class Semester{
         }
         return year;
     }
+
+    public ArrayList<Module> getModules(){
+        return modules;
+    }
+    
+    public Module getModule(int i){
+        return modules.get(i);
+    }
 }
