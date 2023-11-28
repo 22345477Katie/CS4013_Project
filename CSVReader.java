@@ -87,12 +87,12 @@ public class CSVReader {
                     String[] marksAndGrades = markGradePairs[i].split("/");
                     gradeScale.put(Integers.parseInt(marksAndGrades[0]), marksAndGrades[1]);
                 }
-                Module module = new Module(moduleParameters[0], values[0], Integer.parseInt(moduleParameters[1]), Integer.parseInt(moduleParameters[2]), Integer.parseInt(moduleParameters[3]), Integer.parseInt(moduleParameters[4]), gradeScale)
+                Module module = new Module(moduleParameters[0], values[0], Integer.parseInt(moduleParameters[1]), Integer.parseInt(moduleParameters[2]), Integer.parseInt(moduleParameters[3]), Integer.parseInt(moduleParameters[4]), gradeScale);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }   
-        return modules
+        return modules;
     }
 
     public HashMap<String, Integer> setGrades(String fileName){
