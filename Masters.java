@@ -1,4 +1,4 @@
-public class Masters extends Program {
+public class Masters extends Postgrad {
     public Masters(String programId, String name, int duration) {
         super(programId, name, duration);
     }
@@ -13,6 +13,6 @@ public class Masters extends Program {
     }
 
     public String programID() {
-        return getProgramId();
+        return super.getProgramId();
     }
 }
