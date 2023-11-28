@@ -8,122 +8,71 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Module {
-    private int moduleId ;
+    private String moduleId ;
     private String grade;
-    private int semester;
-    private int credits;
-    private int duration;
+    private String semester;
+    private String credits;
+    private String duration;
     private String moduleName;
     private int[] gradeMarks;
     private String[] gradeTitles;
-    private double nonQHrs;
-    private double QPV;
+    private String nonQHrs;
+    private String QPV;
     private HashMap<String, String> gradingScale;
     private ArrayList<String> grades = new ArrayList<String>();
     private ArrayList<Integer> scale = new ArrayList<Integer>();
+    private HashMap<Student, String> studentsGrades;
 
     //Sophie
     //assumption that csv file will be formatted as:
     //moduleName, moduleId, moduleCreditsWorth, moduleDurationInYears, nonQHrsOfModule, QPVForModule
-    public Module(String fileName){
-        Path pathToFile = Paths.get(fileName);
-        
-        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String line = br.readLine();
-            while(line != null){
-                String[] moduleInfo = line.split(",");
-                this.moduleName = moduleInfo[0];
-                this.moduleId = Integer.parseInt(moduleInfo[1]);
-                this.credits = Integer.parseInt(moduleInfo[2]);
-                this.duration = Integer.parseInt(moduleInfo[3]);
-                this.nonQHrs = Double.parseDouble(moduleInfo[4]);
-                this.QPV = Double.parseDouble(moduleInfo[5]);
-                line = br.readLine();
-            }
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
+    public Module(String moduleName, String moduleId, String credits, String duration, HashMap<String, String> gradindScale, HashMap<Student, String> studentsGrades){
+        this.moduleName = moduleName;
+        this.moduleId = moduleId;
+        this.credits = credits;
+        this.duration = duration; 
+        this.gradingScale = gradingScale;
+        this.studentsGrades = studentsGrades;
     }
-
+    
     //Sophie
     public String getModuleName(){
         return this.moduleName;
     }
 
     //Sophie
-    public int getModuleId(){
+    public String getModuleId(){
         return this.moduleId;
     }
 
     //Sophie
-    public int getDuration(){
+    public String getDuration(){
         return this.duration;
     }
 
     //Sophie
-    public int getCredits(){
+    public String getCredits(){
         return this.credits;
     }
 
     //Katie
-    public double getNonQHrs(){
+    public String getNonQHrs(){
         return nonQHrs;
     }
 
     //Katie
-    public double getQPV(){
+    public String getQPV(){
         return QPV;
     }
-
-   
-    public void setGradingScale(String fileName){
-        
-        Path pathToFile = Paths.get(fileName);
-        
-        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String line = br.readLine();
-            while(line != null){
-                String[] gradesAndScales = line.split(",");
-                String grade = gradesAndScales[0];
-                grades.add(grade);
-                String scaling = gradesAndScales[1]; 
-                int scalingInt = Integer.parseInt(scaling);
-                scale.add(scalingInt);
-                line = br.readLine();
-            }
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        
-        
+    
+    public HashMap<Student, String> getStudentGrades(){
+        return studentsGrades;
     }
     
-    
-    
-    public HashMap<String, String> setStudentGrades(String fileName){
-        HashMap<String, String> studentGrades = new HashMap<String, String>();
-        Path pathToFile = Paths.get(fileName);
-        
-        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String line = br.readLine();
-            while(line != null){
-                String[] studentsAndGrade = line.split(",");
-                String student = studentsAndGrade[0];
-                String grade = studentsAndGrade[1];
-                int gradeInt = Integer.parseInt(grade);
-                for (int i = scale.size(); i >= 0; i--){
-                    if(gradeInt >= scale.get(i)){
-                        grade = Integer.toString(scale.get(i));
-                    }
-                }
-                studentGrades.put(student, grade);
-            }
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        return studentGrades;
+    public HashMap<String, String> getGradingScale(){
+        return gradingScale;
     }
-
-    
-    
 }
+
+    
+    
