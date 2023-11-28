@@ -82,7 +82,7 @@ public class Module {
         int mark = studentMarks.get(studentID);
         String grade;
         for (Map.Entry<String, String> entry : map.entrySet()) {
-             String threshold = entry.getKey();
+             int threshold = entry.getKey();
              if (mark>=threshold){
                 grade = entry.getValue();
                  return grade;
