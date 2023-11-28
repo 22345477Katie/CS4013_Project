@@ -110,17 +110,20 @@ public class CSVReader {
         return studentGrades;
     }
         
-    public HashMap<String, Department> setDepartments(String fileName){
-        //each csv file line should be in the format: departmentOneName, departmentTwoName, departmentThreeName etc....
-        HashMap<String, Department> departmentsList = new HashMap<String, Department>();
+    public ArrayList<Department> setDepartments(String fileName){
+        //each csv file line should be in the format: departmentOneName, programCode/programCode/programCode, ...
+        ArrayList<Department> departments = new ArrayList<Department>();
         try (Scanner scanner = new Scanner(new File(fileName))){
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
-                String[] departments = line.split(","); 
-                
-                for(int i = 0; i < departments.length; i++){
-                    Department d = new Department(departments[i]);
-                    departmentsList.put(departments[i], d);
+                String[] details = line.split(","); 
+                String name = details[0];
+                Department d = new Department(name);
+                String[] programs = details[1].split("/");
+                for(int i = 0; i<programs.length; i++){
+                    if(RecordsSystem.getPrograms().containsKey(programs[i])){
+                        d.addProgram(RecordsSystem.getPrograms().get(programs[i]));
+                    }
                 }
             }
         } catch (FileNotFoundException e){
