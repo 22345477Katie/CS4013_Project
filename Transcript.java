@@ -112,7 +112,7 @@ public class Transcript{
                                     String.format("%80s|%-12s%-8.2f%-7.2\n", "", "Att Hrs", getQCADetails(sem)[1], getCumulativeQCADetails()[1]);
             for (int j = 0; j<s.getSemester(i).getModules(); j++){
                 Module module = s.getSemester(i).getModule(i);
-                transcriptOutputBody = transcriptOutputBody + String.format("%-13d%-50s%-8s%-9d|", module.getId(), module.getModuleName(), module.getGrade(s.getStudentId), module.getCredits());
+                transcriptOutputBody = transcriptOutputBody + String.format("%-13d%-50s%-8s%-9d|", module.getId(), module.getModuleName(), module.getStudentGrade(s.getStudentId), module.getCredits());
                 if (j==0){
                     transcriptOutputBody = transcriptOutputBody + String.format("%-12s%-8.2f%-7.2f\n", "Non-Q Hours", module.getNonQHrs(), getCumulativeQCADetails()[2]);
                 }else if (j==1){
