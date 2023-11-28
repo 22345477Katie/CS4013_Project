@@ -89,7 +89,7 @@ public class Module {
              }    
         }
     }
-
+    //sophie's method for grades 
      public String getStudentGrade(String studentID){
         int mark = studentsGrades.get(studentID);
         for(Integer key : gradingScale.keySet()){
