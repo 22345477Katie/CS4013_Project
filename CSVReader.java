@@ -73,7 +73,7 @@ public class CSVReader {
 
     public HashMap<String, Module> setModules(String fileName){
     //each csv file line should be in the format: moduleID (String), module name (String)/module credits (int)/module duration (in years) (int)/non Q Hours (int)/QPV (int),
-        (ctd.)(a list of descending marks and grades listed in pairs, mark first, with each corresponding mark and grade separated by a / and each mark-grade pair separated by a *) (eg. 90/A1*80/A2*75/A3...)
+       // (ctd.)(a list of descending marks and grades listed in pairs, mark first, with each corresponding mark and grade separated by a / and each mark-grade pair separated by a *) (eg. 90/A1*80/A2*75/A3...)
         modules = new HashMap<String, Module>();
         gradeScale = new HashMap<Integer, String>();
         try (Scanner scanner = new Scanner(new File(fileName))) {
