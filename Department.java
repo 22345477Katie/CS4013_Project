@@ -13,19 +13,8 @@ public class Department {
     private ArrayList<Program> programs ;
     
     //creating a department with a name 
-    public Department (String fileName){
-        Path pathToFile = Paths.get(fileName);
-
-        try(BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
-            String line = br.readLine();
-            while(line != null){
-                String[] departmentName = line.split(",");
-                this.departmentName = departmentName[0];
-                line = br.readLine();
-            } 
-        }catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+    public Department (String departmentName, //program list?){
+        this.departmentName = departmentName;
     }
 
     
