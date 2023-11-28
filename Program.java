@@ -44,7 +44,9 @@ public class Program {
     }
     
     public void enrollStudent(Student student) {
+        if (student.getStudentId().equals(studentId)) {
         enrolledStudents.add(student);
+        }
     }
     
     public Map<String, String> viewTranscript() {
@@ -53,9 +55,7 @@ public class Program {
     
     public Student findStudentById(String studentId) {
         for (Student student : enrolledStudents) {
-            if (student.getStudentId().equals(studentId)) {
                 return student;
-            }
         }
         return null;
     }
