@@ -89,7 +89,21 @@ public class Module {
              }    
         }
     }
+
+     public String getStudentGrade(String studentID){
+        int mark = studentsGrades.get(studentID);
+        for(Integer key : gradingScale.keySet()){
+            if(key >= mark){
+               grade = gradingScale.get(key); 
+            }
+        }
+        return grade;
+    }
+
+
+
 }
+
 
     
     
