@@ -17,7 +17,10 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    
+    //SOPHIE THIS IS THE NEW METHOD FOR ADDING PROGRAMS - THE ARRAYLIST WAS ALREADY IN HERE SO IM PRESUMING YOU DIDNT GET RID OF IT
+    public void addProgram(Program program){
+        programs.add(program);
+    }
     
     //return whether a student is progressing to the next year or not
     public boolean reviewProgression(String studentId){
