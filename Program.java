@@ -58,7 +58,7 @@ public class Program {
         return null;
     }
 
-     public static ArrayList<Module> modulesInProgram(String fileName){
+     public ArrayList<Module> modulesInProgram(String fileName){
         this.programs = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
 
