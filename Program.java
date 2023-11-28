@@ -38,7 +38,9 @@ public class Program {
     }
     
     public List<Student> getEnrolledStudents() {
+        if(!enrolledStudents.contains(student)){
         return enrolledStudents;
+        }
     }
     
     public void enrollStudent(Student student) {
