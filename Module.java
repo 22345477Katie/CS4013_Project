@@ -11,13 +11,13 @@ public class Module {
     private String moduleId ;
     private String grade;
     private String semester;
-    private String credits;
+    private int credits;
     private String duration;
     private String moduleName;
     private int[] gradeMarks;
     private String[] gradeTitles;
-    private String nonQHrs;
-    private String QPV;
+    private double nonQHrs;
+    private double QPV;
     private HashMap<String, String> gradingScale;
     private ArrayList<String> grades = new ArrayList<String>();
     private ArrayList<Integer> scale = new ArrayList<Integer>();
@@ -26,11 +26,13 @@ public class Module {
     //Sophie
     //assumption that csv file will be formatted as:
     //moduleName, moduleId, moduleCreditsWorth, moduleDurationInYears, nonQHrsOfModule, QPVForModule
-    public Module(String moduleName, String moduleId, String credits, String duration, HashMap<String, String> gradindScale, HashMap<Student, String> studentsGrades){
+    public Module(String moduleName, String moduleId, int credits, String duration, double nonQHrs, double QPV, HashMap<Integer, String> gradingScale){
         this.moduleName = moduleName;
         this.moduleId = moduleId;
         this.credits = credits;
         this.duration = duration; 
+        this.nonQHrs = nonQHrs;
+        this.QPV = QPV;
         this.gradingScale = gradingScale;
         this.studentsGrades = studentsGrades;
     }
@@ -51,17 +53,17 @@ public class Module {
     }
 
     //Sophie
-    public String getCredits(){
+    public int getCredits(){
         return this.credits;
     }
 
     //Katie
-    public String getNonQHrs(){
+    public double getNonQHrs(){
         return nonQHrs;
     }
 
     //Katie
-    public String getQPV(){
+    public double getQPV(){
         return QPV;
     }
     
@@ -69,7 +71,7 @@ public class Module {
         return studentsGrades;
     }
     
-    public HashMap<String, String> getGradingScale(){
+    public HashMap<Integer, String> getGradingScale(){
         return gradingScale;
     }
 }
