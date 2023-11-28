@@ -6,6 +6,7 @@ public class CSVReader {
     private HashMap<String, Student> students;
     private HashMap<String, Module> modules;
     private HashMap<Integer, String> gradeScale;
+    private HashMap<String, Integer> studentGrades;
     public static void main(String[] args) {
 
         try (Scanner scanner = new Scanner(new File(fileName))) {
@@ -40,7 +41,7 @@ public class CSVReader {
         }*/
 
     public HashMap<String, Student> setStudents(String fileName){
-    //csv file should be in the format: student number (String), name (String)/date of birth (String)/address (String)/year of study (int)/program id (String)/current semester (int)
+    //each csv file line should be in the format: student number (String), name (String)/date of birth (String)/address (String)/year of study (int)/program id (String)/current semester (int)
         students = new HashMap<String, Student>();
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
@@ -56,6 +57,7 @@ public class CSVReader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return students;
     }
 
     public HashMap<String, Program> setPrograms(String fileName){
@@ -70,7 +72,7 @@ public class CSVReader {
     }
 
     public HashMap<String, Module> setModules(String fileName){
-    //csv file should be in the format: moduleID (String), module name (String)/module credits (int)/module duration (in years) (int)/non Q Hours (int)/QPV (int),
+    //each csv file line should be in the format: moduleID (String), module name (String)/module credits (int)/module duration (in years) (int)/non Q Hours (int)/QPV (int),
         (ctd.)(a list of descending marks and grades listed in pairs, mark first, with each corresponding mark and grade separated by a / and each mark-grade pair separated by a *) (eg. 90/A1*80/A2*75/A3...)
         modules = new HashMap<String, Module>();
         gradeScale = new HashMap<Integer, String>();
@@ -90,10 +92,31 @@ public class CSVReader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }   
+        return modules
     }
 
-    public HashMap<String, Integer> setGrades(
+    public HashMap<String, Integer> setGrades(String fileName){
+    //each csv file line should be in the format: student id (String), mark (int)
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] values = line.split(",");
+                studentGrades = new HashMap<String, Integer>;
+                studentGrades.put(values[0], Integer.parseInt(values[1]));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return studentGrades;
+    }
         
-    
+    public HashMap<String, Department> setDepartments(String fileName){
+    //each csv file line should be in the format:
+        
+    }
+
+    public HashMap<String, Faculty> setFaculty(String fileName){
+        
+    }
         
 }
