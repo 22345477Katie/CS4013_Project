@@ -33,6 +33,6 @@ public class Undergrad extends Program {
     }
 
     public String programID() {
-        return getProgramId();
+        return super.getProgramId();
     }
 }
