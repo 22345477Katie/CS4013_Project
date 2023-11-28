@@ -111,8 +111,22 @@ public class CSVReader {
     }
         
     public HashMap<String, Department> setDepartments(String fileName){
-    //each csv file line should be in the format:
-        
+        //each csv file line should be in the format: departmentOneName, departmentTwoName, departmentThreeName etc....
+        HashMap<String, Department> departmentsList = new HashMap<String, Department>();
+        try (Scanner scanner = new Scanner(new File(fileName))){
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                String[] departments = line.split(","); 
+                
+                for(int i = 0; i < departments.length; i++){
+                    Department d = new Department(departments[i]);
+                    departmentsList.put(departments[i], d);
+                }
+            }
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        return departmentsList;
     }
 
     public HashMap<String, Faculty> setFaculty(String fileName){
